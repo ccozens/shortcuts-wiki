@@ -1,32 +1,44 @@
 import Card from "@/components/home/card";
 import Balancer from "react-wrap-balancer";
-import { Github } from "@/components/shared/icons";
 import WebVitals from "@/components/home/web-vitals";
-import ComponentGrid from "@/components/home/component-grid";
 import { Metadata } from "next";
-import Link from "next/link";
+import prisma from "@prismaclient";
 
 export const metadata = {
   title: "shortcuts-wiki",
   description: "Personal wiki, based on Precedent.js",
 };
 
-export default function Page() {
+export const revalidate = 3600;
+
+async function getWikiData() {
+  const wikiData = await prisma.wikiPage.findMany({
+    include: {
+      tag: true,
+    },
+  });
+  return wikiData;
+}
+
+
+export default async function Page() {
+  const wikiData = await getWikiData();
+
+  console.log(wikiData);
   return (
-    <>
+    <div className="w-11/12">
       <h1 className="text-gray-800">Hello, Next.js!</h1>;
-      <a
-        className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-5 py-2 text-sm text-gray-600 shadow-md transition-colors hover:border-gray-800"
-        href="https://github.com/ccozens/shortcuts-wiki"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Github />
-        <p>
-          <span className="hidden sm:inline-block">Code at </span> GitHub{" "}
-        </p>
-      </a>
-      <Link href="/about">About</Link>
-    </>
+      <div className="flex">
+        {wikiData.map((wikiPage) => (
+          <Card
+            key={wikiPage.id}
+            app={wikiPage.tag.name}
+            title={wikiPage.title}
+            content={wikiPage.content}
+            shortcut={wikiPage.shortcut}
+          />
+        ))}
+      </div>
+    </div>
   );
 }

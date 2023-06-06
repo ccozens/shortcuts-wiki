@@ -1,19 +1,20 @@
 import React from "react";
-import Link from "next/link";
-
 interface navButtonProps {
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  // link?: typeof Link;
   text: string | React.ReactNode;
   children?: React.ReactNode;
 }
 
 const NavButton = ({ className, onClick, text }: navButtonProps) => {
-  className =
-    "rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black";
 
-  return <button className={className} onClick={onClick}>{text}</button>;
+
+
+  className =
+    "rounded-full border border-green-400 bg-black p-1.5 px-4 text-sm text-green-200 transition-all hover:bg-green-400 hover:text-black";
+
+  return <button className={className} onClick={onClick} 
+ >{text}</button>;
 };
 
 export default NavButton;
