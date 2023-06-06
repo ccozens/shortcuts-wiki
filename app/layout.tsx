@@ -5,14 +5,7 @@ import { sfPro, inter } from "./fonts";
 import Nav from "@/components/layout/nav";
 import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
-
-export const metadata = {
-  title: "shortcuts-wiki",
-  description: "Personal wiki, based on Precedent.js",
-
-  // metadataBase: new URL("https://precedent.dev"),
-  themeColor: "#FFF",
-};
+import MenuTabs from "@/components/layout/menuTabs"
 
 export default async function RootLayout({
   children,
@@ -28,6 +21,7 @@ export default async function RootLayout({
             <Nav />
           </Suspense>
           <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+            <MenuTabs />
             {children}
           </main>
           <Footer />

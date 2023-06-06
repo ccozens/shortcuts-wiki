@@ -1,5 +1,6 @@
 "use client";
 
+import NavButton from "@/components/shared/buttons/navButton";
 import Image from "next/image";
 import Link from "next/link";
 import useScroll from "@/lib/hooks/use-scroll";
@@ -10,7 +11,8 @@ import { Session } from "next-auth";
 export default function NavBar({ session }: { session: Session | null }) {
   const { SignInModal, setShowSignInModal } = useSignInModal();
   const scrolled = useScroll(50);
-
+  const homeLink = <Link href="/">Home</Link>;
+  const aboutLink = <Link href="/about">About</Link>;
   return (
     <>
       <SignInModal />
@@ -36,14 +38,14 @@ export default function NavBar({ session }: { session: Session | null }) {
             {session ? (
               <UserDropdown session={session} />
             ) : (
-              <button
-                className="rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
-                onClick={() => setShowSignInModal(true)}
-              >
-                Sign In
-              </button>
+              <NavButton 
+              onClick={() => setShowSignInModal(true)}
+              text="Sign in">
+              </NavButton>
             )}
           </div>
+          <NavButton text={homeLink}> </NavButton>
+          <NavButton text={aboutLink}> </NavButton>
         </div>
       </div>
     </>

@@ -3,10 +3,15 @@ import Balancer from "react-wrap-balancer";
 import { Github } from "@/components/shared/icons";
 import WebVitals from "@/components/home/web-vitals";
 import ComponentGrid from "@/components/home/component-grid";
-import Image from "next/image";
+import { Metadata } from "next";
+import Link from "next/link";
+
+export const metadata = {
+  title: "shortcuts-wiki",
+  description: "Personal wiki, based on Precedent.js",
+};
 
 export default function Page() {
-  console.log("Home");
   return (
     <>
       <h1 className="text-gray-800">Hello, Next.js!</h1>;
@@ -21,6 +26,7 @@ export default function Page() {
           <span className="hidden sm:inline-block">Code at </span> GitHub{" "}
         </p>
       </a>
+      <Link href="/about">About</Link>
     </>
   );
 }
