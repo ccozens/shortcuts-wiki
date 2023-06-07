@@ -20,14 +20,25 @@ async function getWikiData() {
   return wikiData;
 }
 
-
 export default async function Page() {
-  const wikiData = await getWikiData();
+  // const wikiData = await getWikiData();
+  const wikiData = [
+    {
+      id: 1,
+      title: "open",
+      content: null,
+      shortcut: "cmd space",
+      tagId: 1,
+      tag: { id: 1, name: "raycast" },
+    },
+  ];
 
   console.log(wikiData);
   return (
     <div className="w-11/12">
-      <h1 className="text-gray-800">Hello, Next.js!</h1>;
+      <h1 className="text-gray-800">Hello, Next.js!</h1>
+
+      
       <div className="flex">
         {wikiData.map((wikiPage) => (
           <Card
