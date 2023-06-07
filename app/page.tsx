@@ -1,6 +1,7 @@
 import Card from "@/components/home/card";
 import MenuTabs from "@/components/home/menuTabs/menuTabs";
 import menuTabStyle from "@/components/home/menuTabs/menuTabStyle";
+import SearchBox from "@/components/home/search/SearchBox";
 import WebVitals from "@/components/home/web-vitals";
 import { Metadata } from "next";
 import { getTags } from "@/api/tags/route";
@@ -8,7 +9,7 @@ import { getWikiData } from "@/api/wikiData/route";
 
 export const metadata = {
   title: "shortcuts-wiki",
-  description: "Personal wiki, based on Precedent.js",
+  description: "Personal wiki, based on Precedent.dev",
 };
 
 
@@ -52,6 +53,7 @@ export default async function Page() {
   return (
     <>
       <MenuTabs menuTabStyle={menuTabStyle} tags={tags} />
+      <SearchBox items={wikiData} />
       <div className="w-11/12">
         <div className="mx-auto grid w-3/4 grid-cols-1 gap-y-2 ">
           {wikiData.map((wikiPage) => (
