@@ -3,7 +3,6 @@ import MenuTabs from "@/components/home/menuTabs/menuTabs";
 import menuTabStyle from "@/components/home/menuTabs/menuTabStyle";
 import WebVitals from "@/components/home/web-vitals";
 import { Metadata } from "next";
-import prisma from "@prismaclient";
 import { getTags } from "@/api/tags/route";
 import { getWikiData } from "@/api/wikiData/route";
 

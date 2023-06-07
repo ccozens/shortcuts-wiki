@@ -1,6 +1,5 @@
 "use client";
 
-import prisma from "@prismaclient";
 import Link from "next/link";
 import menuTabStyle from "./menuTabStyle";
 
