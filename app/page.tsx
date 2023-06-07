@@ -1,27 +1,22 @@
 import Card from "@/components/home/card";
-import Balancer from "react-wrap-balancer";
+import MenuTabs from "@/components/home/menuTabs/menuTabs";
+import menuTabStyle from "@/components/home/menuTabs/menuTabStyle";
 import WebVitals from "@/components/home/web-vitals";
 import { Metadata } from "next";
 import prisma from "@prismaclient";
+import { getTags } from "@/api/tags/route";
+import { getWikiData } from "@/api/wikiData/route";
 
 export const metadata = {
   title: "shortcuts-wiki",
   description: "Personal wiki, based on Precedent.js",
 };
 
-export const revalidate = 3600;
-
-async function getWikiData() {
-  const wikiData = await prisma.wikiPage.findMany({
-    include: {
-      tag: true,
-    },
-  });
-  return wikiData;
-}
 
 export default async function Page() {
+  
   // const wikiData = await getWikiData();
+  // const tags = await getTags();
   const wikiData = [
     {
       id: 1,
@@ -49,20 +44,27 @@ export default async function Page() {
     },
   ];
 
-  console.log(wikiData);
+  const tags = [
+    { id: 1, name: "raycast" },
+    { id: 2, name: "warp" },
+    { id: 3, name: "VScode" },
+  ];
+
   return (
-    <div className="w-11/12">
-      
-      <div className="grid grid-cols-1 gap-y-2 w-3/4 mx-auto ">
-        {wikiData.map((wikiPage) => (
-          <Card
-            key={wikiPage.id}
-            title={wikiPage.title}
-            content={wikiPage.content}
-            shortcut={wikiPage.shortcut}
-          />
-        ))}
+    <>
+      <MenuTabs menuTabStyle={menuTabStyle} tags={tags} />
+      <div className="w-11/12">
+        <div className="mx-auto grid w-3/4 grid-cols-1 gap-y-2 ">
+          {wikiData.map((wikiPage) => (
+            <Card
+              key={wikiPage.id}
+              title={wikiPage.title}
+              content={wikiPage.content}
+              shortcut={wikiPage.shortcut}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

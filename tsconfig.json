@@ -9,6 +9,7 @@
       "@/components/*": ["components/*"],
       "@/pages/*": ["pages/*"],
       "@/app/*": ["app/*"],
+      "@/api/*": ["app/api/*"],
       "@/lib/*": ["lib/*"],
       "@/styles/*": ["styles/*"],
       "@prismaclient": ["lib/prisma"],

@@ -4,7 +4,6 @@ import cx from "classnames";
 import { sfPro, inter } from "./fonts";
 import Header from "@/components/layout/header";
 import { Suspense } from "react";
-import MenuTabs from "@/components/layout/menuTabs"
 
 export default async function RootLayout({
   children,
@@ -19,7 +18,6 @@ export default async function RootLayout({
             <Header />
           </Suspense>
           <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
-            <MenuTabs />
             {children}
           </main>
           <Analytics />

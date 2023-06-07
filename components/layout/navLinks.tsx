@@ -5,8 +5,6 @@ import Link from "next/link";
 import { Github } from "@/components/shared/icons";
 
 const navLinks = () => {
-    
-    
     const homeLink = <Link href="/">Home</Link>;
     const aboutLink = <Link href="/about">About</Link>;
     const githubLink = (
