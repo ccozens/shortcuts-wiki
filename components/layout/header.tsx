@@ -2,8 +2,11 @@ import Nav from "./nav";
 
 const Header = () => {
   return (
-    <div className="flex max-w-screen-xl">
-      <h1 className="text-green-400"> Title </h1>
+    <div className="mx-5 flex h-16 max-w-screen-xl justify-between">
+      <h1 className=" m-4 text-4xl font-extrabold leading-none tracking-tight  text-green-400 md:text-5xl lg:text-6xl ">
+        {" "}
+        All the things{" "}
+      </h1>
       {/* @ts-expect-error Server Component */}
       <Nav />
     </div>

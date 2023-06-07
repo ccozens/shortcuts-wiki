@@ -31,13 +31,27 @@ export default async function Page() {
       tagId: 1,
       tag: { id: 1, name: "raycast" },
     },
+    {
+      id: 2,
+      title: "warp command search",
+      content: null,
+      shortcut: "#",
+      tagId: 2,
+      tag: { id: 2, name: "warp" },
+    },
+    {
+      id: 3,
+      title: "select all instances of word",
+      content: null,
+      shortcut: "cmd shift l",
+      tagId: 3,
+      tag: { id: 3, name: "VScode" },
+    },
   ];
 
   console.log(wikiData);
   return (
     <div className="w-11/12">
-      <h1 className="text-gray-800">Hello, Next.js!</h1>
-
       
       <div className="flex">
         {wikiData.map((wikiPage) => (
