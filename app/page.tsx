@@ -33,7 +33,7 @@ export default async function Page() {
     },
     {
       id: 2,
-      title: "warp command search",
+      title: "command search",
       content: null,
       shortcut: "#",
       tagId: 2,
@@ -53,11 +53,10 @@ export default async function Page() {
   return (
     <div className="w-11/12">
       
-      <div className="flex">
+      <div className="grid grid-cols-1 gap-y-2 w-3/4 mx-auto ">
         {wikiData.map((wikiPage) => (
           <Card
             key={wikiPage.id}
-            app={wikiPage.tag.name}
             title={wikiPage.title}
             content={wikiPage.content}
             shortcut={wikiPage.shortcut}
