@@ -8,3 +8,4 @@ export { default as CopyOutline } from "./copy-outline";
 export { default as CopyFilled } from "./copy-filled";
 export { default as Edit } from "./edit";
 export { default as Delete } from "./delete";
+export { default as Plus } from "./plus";

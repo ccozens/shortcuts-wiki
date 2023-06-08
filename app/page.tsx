@@ -2,6 +2,7 @@ import Card from "@/components/home/card";
 import MenuTabs from "@/components/home/menuTabs/menuTabs";
 import menuTabStyle from "@/components/home/menuTabs/menuTabStyle";
 import SearchBox from "@/components/home/search/SearchBox";
+import AddItem from "@/components/shared/buttons/AddItem";
 import WebVitals from "@/components/home/web-vitals";
 import { Metadata } from "next";
 import { getTags } from "@/api/tags/route";
@@ -48,12 +49,17 @@ export default async function Page() {
     { id: 3, name: "VScode" },
   ];
 
-  
-
   return (
     <>
       <MenuTabs menuTabStyle={menuTabStyle} tags={tags} />
-      <SearchBox items={wikiData} />
+      <div className="w-11/12 flex mb-6">
+        <div className="basis-11/12 my-auto">
+        <SearchBox items={wikiData} />
+          </div>
+        <div className="basis-1/12 my-auto">
+        <AddItem />
+      </div>
+      </div>
       <div className="w-11/12">
         <div className="mx-auto grid w-3/4 grid-cols-1 gap-y-2 ">
           {wikiData.map((wikiPage) => (

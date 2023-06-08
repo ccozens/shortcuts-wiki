@@ -70,14 +70,14 @@ export default function SearchBox({ items }: SearchBoxProps) {
     );
 
     return (
-      <div className="mb-6 w-11/12">
-        <div className="flex flex-col gap-1 ">
+      <div className="">
+        <div className="mb-6 flex flex-col  gap-1">
           <label className="w-fit" {...getLabelProps()}>
             Search for a command:
           </label>
           <div className="mx-auto flex w-1/2 rounded-lg border border-green-400  bg-green-300 p-2">
             <input
-              // autoFocus
+              autoFocus
               placeholder="Type to search..."
               className="w-full rounded-lg bg-green-400 p-1.5 text-lg focus:bg-green-300 focus:outline-none focus:ring-2 focus:ring-green-400"
               {...getInputProps()}
@@ -93,9 +93,8 @@ export default function SearchBox({ items }: SearchBoxProps) {
           </div>
         </div>
         <ul
-          className={`mx-auto my-2 max-h-80 w-1/2 overflow-scroll overflow-x-hidden overflow-y-auto  bg-green-400 p-0 ${
-            !(isOpen && items.length) 
-            && "hidden"
+          className={`mx-auto my-2 max-h-80 w-1/2 overflow-scroll overflow-y-auto overflow-x-hidden  bg-green-400 p-0 ${
+            !(isOpen && items.length) && "hidden"
           }`}
           {...getMenuProps()}
         >
@@ -103,9 +102,7 @@ export default function SearchBox({ items }: SearchBoxProps) {
         </ul>
         {fullSelectedItem && (
           <div className="mx-auto my-3 w-3/4 rounded-lg">
-            <Card
-              wikiPage={fullSelectedItem}
-            />
+            <Card wikiPage={fullSelectedItem} />
           </div>
         )}
       </div>
