@@ -103,9 +103,7 @@ export default function SearchBox({ items }: SearchBoxProps) {
         {fullSelectedItem && (
           <div className="mx-auto my-3 w-3/4 rounded-lg">
             <Card
-              title={fullSelectedItem.title}
-              content={fullSelectedItem.content}
-              shortcut={fullSelectedItem.shortcut}
+              wikiPage={fullSelectedItem}
             />
           </div>
         )}

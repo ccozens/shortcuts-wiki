@@ -12,9 +12,7 @@ export const metadata = {
   description: "Personal wiki, based on Precedent.dev",
 };
 
-
 export default async function Page() {
-  
   // const wikiData = await getWikiData();
   // const tags = await getTags();
   const wikiData = [
@@ -50,8 +48,8 @@ export default async function Page() {
     { id: 3, name: "VScode" },
   ];
 
+  
 
-      
   return (
     <>
       <MenuTabs menuTabStyle={menuTabStyle} tags={tags} />
@@ -59,12 +57,7 @@ export default async function Page() {
       <div className="w-11/12">
         <div className="mx-auto grid w-3/4 grid-cols-1 gap-y-2 ">
           {wikiData.map((wikiPage) => (
-            <Card
-              key={wikiPage.id}
-              title={wikiPage.title}
-              content={wikiPage.content}
-              shortcut={wikiPage.shortcut}
-            />
+            <Card key={wikiPage.id} wikiPage={wikiPage} />
           ))}
         </div>
       </div>

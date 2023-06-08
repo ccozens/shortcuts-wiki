@@ -4,10 +4,8 @@ import { CopyOutline, CopyFilled } from "@/components/shared/icons";
 import { useState } from "react";
 
 function ClipboardCopy({
-  className,
   text,
 }: {
-  className: string;
   text: string;
 }) {
   const [copied, setCopied] = useState(false);
