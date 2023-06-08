@@ -1,13 +1,13 @@
 "use client";
 
 import { useCombobox } from "downshift";
+import getWikiPageTitleFilter from "./getWikiPageTitleFilter";
 import cx from "classnames";
 import { WikiPage as WikiPageType } from "@prismatypes";
 import { useState, useEffect } from "react";
-
+import Card from "@/components/home/card";
 interface SearchBoxProps {
   className?: string;
-  handleSelect?: (eventName: string) => void;
   items: WikiPageType[];
 }
 
@@ -15,16 +15,7 @@ export default function SearchBox({ items }: SearchBoxProps) {
   const itemTitles = items.map((wikiPage) => {
     return wikiPage.title;
   });
-
-  // function to filter titles according to input value
-  function getWikiPageTitleFilter(inputValue?: string) {
-    const lowerCasedInputValue = (inputValue || "").toLowerCase();
-    return function titleFilter(wikiPage: string) {
-      return (
-        !inputValue || wikiPage.toLowerCase().includes(lowerCasedInputValue)
-      );
-    };
-  }
+  const allItems = items;
 
   // main combobox function
   function ComboBox() {
@@ -32,6 +23,9 @@ export default function SearchBox({ items }: SearchBoxProps) {
     useEffect(() => {
       setItems(itemTitles);
     }, []);
+    const [selectedItem, setSelectedItem] = useState<string | null | undefined>(
+      null,
+    );
 
     // downshift hook
     const {
@@ -42,8 +36,6 @@ export default function SearchBox({ items }: SearchBoxProps) {
       getInputProps,
       highlightedIndex,
       getItemProps,
-      selectedItem,
-      reset,
     } = useCombobox({
       onInputValueChange({ inputValue }) {
         const filteredItem = items.filter(getWikiPageTitleFilter(inputValue));
@@ -53,6 +45,10 @@ export default function SearchBox({ items }: SearchBoxProps) {
       itemToString(item) {
         return item ? item : "";
       },
+      selectedItem,
+      onSelectedItemChange: ({ selectedItem: newSelectedItem }) => {
+        setSelectedItem(newSelectedItem);
+      },
     });
 
     const itemsMap = items.map((item, index) => (
@@ -60,7 +56,7 @@ export default function SearchBox({ items }: SearchBoxProps) {
         className={cx(
           highlightedIndex === index && "bg-green-300",
           selectedItem === item && "font-bold",
-          "flex flex-col px-3 py-2 ",
+          "flex flex-col px-3 py-2",
         )}
         key={`${index}`}
         {...getItemProps({ item, index })}
@@ -69,20 +65,19 @@ export default function SearchBox({ items }: SearchBoxProps) {
       </li>
     ));
 
+    const fullSelectedItem = allItems.find(
+      (item) => item.title === selectedItem,
+    );
+
     return (
-      <div>
-        <div className="flex w-11/12 flex-col gap-1">
+      <div className="mb-6 w-11/12">
+        <div className="flex flex-col gap-1 ">
           <label className="w-fit" {...getLabelProps()}>
             Search for a command:
           </label>
-          <div className="flex rounded-lg border border-green-400  bg-green-300 p-2">
+          <div className="mx-auto flex w-1/2 rounded-lg border border-green-400  bg-green-300 p-2">
             <input
-              autoFocus
-              onBlur={() => {
-                if (selectedItem === null) {
-                  reset();
-                }
-              }}
+              // autoFocus
               placeholder="Type to search..."
               className="w-full rounded-lg bg-green-400 p-1.5 text-lg focus:bg-green-300 focus:outline-none focus:ring-2 focus:ring-green-400"
               {...getInputProps()}
@@ -98,13 +93,22 @@ export default function SearchBox({ items }: SearchBoxProps) {
           </div>
         </div>
         <ul
-          className={`absolute mt-1 max-h-80 w-72 overflow-scroll bg-green-400 p-0 ${
+          className={`mx-auto my-2 max-h-80 w-1/2 overflow-scroll bg-green-400 p-0 ${
             !(isOpen && items.length) && "hidden"
           }`}
           {...getMenuProps()}
         >
           {isOpen && itemsMap}
         </ul>
+        {fullSelectedItem && (
+          <div className="mx-auto my-3 w-3/4 rounded-lg">
+            <Card
+              title={fullSelectedItem.title}
+              content={fullSelectedItem.content}
+              shortcut={fullSelectedItem.shortcut}
+            />
+          </div>
+        )}
       </div>
     );
   }

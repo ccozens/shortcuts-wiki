@@ -88,3 +88,15 @@ https://user-images.githubusercontent.com/28986134/212368288-12f41e37-aa8c-4e0a-
 ## Author
 
 - Steven Tey ([@steventey](https://twitter.com/steventey))
+
+
+https://github.com/jaywcjlove/hotkeys-js
+2.8 kb, no depenedencies, 5900 stars
+
+https://github.com/greena13/react-hotkeys
+15.2 kb, 1 dependency, 2100 stars
+
+https://github.com/JohannesKlauss/react-hotkeys-hook
+2.5 kb, no depenedencies, 1900 stars
+
+https://www.fullstacklabs.co/blog/keyboard-shortcuts-with-react-hooks

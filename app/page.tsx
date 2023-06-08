@@ -50,6 +50,8 @@ export default async function Page() {
     { id: 3, name: "VScode" },
   ];
 
+
+      
   return (
     <>
       <MenuTabs menuTabStyle={menuTabStyle} tags={tags} />
