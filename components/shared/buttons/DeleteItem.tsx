@@ -11,14 +11,13 @@ function DeleteItem({ wikiPage }: DeleteItemProps) {
   // onClick handler function for the Delete button
   const handleDeleteClick = () => {
     // todo
-    console.log('delete ', wikiPage.title);
+    console.log("delete ", wikiPage.title);
   };
 
   return (
-    <Delete
-      className="h-6 w-6 hover:cursor-pointer"
-      handleDeleteClick={handleDeleteClick}
-    />
+    <button onClick={handleDeleteClick}>
+      <Delete className="h-6 w-6" />
+    </button>
   );
 }
 

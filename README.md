@@ -100,3 +100,12 @@ https://github.com/JohannesKlauss/react-hotkeys-hook
 2.5 kb, no depenedencies, 1900 stars
 
 https://www.fullstacklabs.co/blog/keyboard-shortcuts-with-react-hooks
+
+
+⌘ Command()
+⌃ Control
+⌥ Option(alt)
+⇧ Shift
+⇪ Caps Lock
+fn Function key is fn (not supported)
+↩︎ return/enter space space keys

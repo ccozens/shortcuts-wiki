@@ -4,8 +4,9 @@ import { useCombobox } from "downshift";
 import getWikiPageTitleFilter from "./getWikiPageTitleFilter";
 import cx from "classnames";
 import { WikiPage as WikiPageType } from "@prismatypes";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Card from "@/components/home/card";
+import { useHotkeys } from "react-hotkeys-hook";
 interface SearchBoxProps {
   className?: string;
   items: WikiPageType[];
@@ -19,13 +20,24 @@ export default function SearchBox({ items }: SearchBoxProps) {
 
   // main combobox function
   function ComboBox() {
+    const inputRef = useRef<HTMLInputElement>(null);
     const [items, setItems] = useState(itemTitles);
-    useEffect(() => {
-      setItems(itemTitles);
-    }, []);
     const [selectedItem, setSelectedItem] = useState<string | null | undefined>(
       null,
     );
+    useEffect(() => {
+      setItems(itemTitles);
+    }, []);
+
+    // hotkeys
+    // focus on input when command+k pressed
+    useHotkeys("command+k", () => inputRef.current?.focus());
+    // blank input when esc pressed
+    useHotkeys("esc", () => {
+      setSelectedItem(null);
+      setItems(itemTitles);
+      inputRef.current!.value = ""; // note non-null assertion, telling TS thast there is a value there
+    });
 
     // downshift hook
     const {
@@ -77,10 +89,11 @@ export default function SearchBox({ items }: SearchBoxProps) {
           </label>
           <div className="mx-auto flex w-1/2 rounded-lg border border-green-400  bg-green-300 p-2">
             <input
-              autoFocus
               placeholder="Type to search..."
               className="w-full rounded-lg bg-green-400 p-1.5 text-lg focus:bg-green-300 focus:outline-none focus:ring-2 focus:ring-green-400"
-              {...getInputProps()}
+              {...getInputProps({
+                ref: inputRef,
+              })}
             />
             <button
               aria-label="toggle menu"

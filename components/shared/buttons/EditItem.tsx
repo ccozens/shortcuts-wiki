@@ -15,10 +15,12 @@ function EditItem({ wikiPage }: EditItemProps) {
   };
 
   return (
+    <button
+    onClick={handleEditClick}>
     <Edit
-      className="h-6 w-6 hover:cursor-pointer"
-      handleEditClick={handleEditClick}
+      className="h-6 w-6"
     />
+    </button>
   );
 }
 
