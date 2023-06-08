@@ -93,8 +93,9 @@ export default function SearchBox({ items }: SearchBoxProps) {
           </div>
         </div>
         <ul
-          className={`mx-auto my-2 max-h-80 w-1/2 overflow-scroll bg-green-400 p-0 ${
-            !(isOpen && items.length) && "hidden"
+          className={`mx-auto my-2 max-h-80 w-1/2 overflow-scroll overflow-x-hidden overflow-y-auto  bg-green-400 p-0 ${
+            !(isOpen && items.length) 
+            && "hidden"
           }`}
           {...getMenuProps()}
         >
